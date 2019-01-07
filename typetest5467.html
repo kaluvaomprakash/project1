@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body >
+    <div class="container">
+        <p id="ptag" oncopy="return false" onpaste="return false" style="background-color:yellow;">
+
+
+            Harry Potter is a series of novels written by British author Rowling. The novels chronicle the life of a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all of whom are students at Hogwarts School of Witchcraft and Wizardry. The main story arc concerns Harry's struggl against Lord Voldemort, a dark wizard who intends to become immortal, overthrow the wizard governing body known as the Ministry of Magic, and subjugate all wizards and Muggles.Since the release of the first novel, Harry Potter and the Philosopher's Stone, on 26 June 1997.... </p>
+        <p id="result">
+            <p> <span id="countdowntimer">60 </span> Seconds</p>
+            <!-- <button class="btn btn-primary" onclick="start()">start</button> -->
+        </p>
+
+        <p id="tot"> </p>
+
+        <p id="result1"></p>
+
+        <textarea rows="5" cols="145" id="typingarea" onkeydown="countt(event)" onmousedown="startTimer()" oncopy="return false" onpaste="return false"> </textarea>
+        <p id="wrong-done"></p>
+        <!-- <button class="btn btn-primary" onclick="check()">DONE</button> -->
+
+    </div>
+    <script>
+        var count = 0;
+        var count1=0;
+        function countt(event) {
+            if (event.keyCode == 32) {
+                count++;
+                document.getElementById("tot").innerHTML = "keypress is " + count;
+                count1=count;
+            }
+            $(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+    }
+});
+        }
+         function startTimer() {
+            var timeleft = 60;
+            var downloadTimer = setInterval(function () {
+                timeleft--;
+                document.getElementById("countdowntimer").textContent = timeleft;
+                if (timeleft <= 0)
+                    clearInterval(downloadTimer);
+                if (timeleft == 0) {
+                    document.getElementById("typingarea").disabled = true;
+
+                }
+            }, 1000);
+
+            var result=setTimeout(function(){
+                var count=0;var error=0;
+                var ptag1=document.getElementById("ptag").innerHTML
+                ptag1=ptag1.trim();
+                var arr=ptag1.split(" ");
+                console.log(arr);
+                var textarea1=document.getElementById("typingarea").value
+                textarea1=textarea1.trim();
+                var arr1=textarea1.split(" ");
+                console.log(arr1);
+                
+
+                for(var i=0;i<arr1.length;i++){
+                    if(arr[i]!==arr1[i]){
+                        document.getElementById("wrong-done").innerHTML=arr[i];
+                       console.log("ptag "+i+" "+arr[i]);
+                       console.log("our Typing "+i+" "+arr1[i]);
+                       var ptag11=document.getElementById("ptag").innerHTML
+                   
+                        error++;
+                        console.log(i+" "+error);
+                    }
+
+                }
+                alert("Errors "+error+"\n"+"WPM "+count1);
+                console.log(error);
+            },62000)
+
+        
+        }
+        //    $(document).ready(function(){
+    //      //  console.log("in jquery");
+    //      //$("p:contains(Harry)").css("background-color", "red");
+//});
+
+// Disable enter in js
+//     window.addEventListener('keydown',function(e){
+//         if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13)
+//         {
+//             if(e.target.nodeName=='INPUT'&&  e.target.type=='text')
+//             {
+//                 e.preventDefault();return false;
+//                 }
+//                 }
+//                 },true);
+
+         
+    </script>
+</body>
+
+</html>
+
+
