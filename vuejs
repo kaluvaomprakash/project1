@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>pratic</title>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+    <!-- <p>Hello World</p>
+    <h1 v-once>{{data1}}</h1>
+    <p>{{vonce1}}</p>
+    <p>{{voncetest()}}</p>
+    <button @click="increse">Click Me</button>        
+<p>NumberOfTimes :- {{count}}</p>
+<hr>
+<p v-html="vhtmllink"></p>
+<hr>
+<p @mouseover="updateCordinates">Cordinates:{{x}}/{{y}} </p>
+<p @mouseover="dummy12">STOP PROGPAaaaaaaaTION</p> -->
+
+{{obje[0].name}}
+
+<form v-for="item in obje">
+    
+    <div class="form-group">
+      <label for="exampleInputEmail1">{{item.label}}</label>
+      <input :type=item.email class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+     </form>
+</div>
+
+
+    </body>
+    <script>
+    new Vue({
+    el:"#app",
+    data:{
+        data1:"working v-once",
+        count:0,
+        vonce1:"testing",
+        //vhtmllink:'<a href="https://google.com">Google</a>'
+        vhtmllink:'<h1>Done with v-html</h1>',
+        x:0,
+        y:0,
+        hoveredOnPTag:false,
+        obje:[{
+		"id": "userEmail",
+		"type": "email",
+		"name": "Email",
+		"label": "Email",
+		"required": true
+	},
+	 {
+		"id": "Api_Key",
+		"type": "text",
+		"name": "Api key",
+		"label": "Api key",
+		"required": true
+	}]
+
+    },
+    methods:{
+        voncetest(){
+            this.data1="from method of voncetest()"
+            return this.data1;
+        },
+        increse(){
+            return this.count++;
+        },
+        updateCordinates(event){
+            this.x=event.clientX;
+            this.y=event.clientY;
+            hoveredOnPTag=true;
+        }
+    },
+    dummy12(event){
+        if(hoveredOnPTag){
+        event.stopPropagation();
+       }
+    }
+
+    })
+    
+    </script>
+
+</html>
